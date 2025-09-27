@@ -5,7 +5,9 @@ from PyPDF2 import PdfReader
 from pptx import Presentation
 
 # ================== CONFIG ==================
-API_KEY = "sk-or-xxxxxxxxxxxxxxxxxxxxxxxxxxxx"  # your key here
+import os
+API_KEY = os.getenv("OPENROUTER_API_KEY")
+
 MODEL = "deepseek/deepseek-chat-v3.1:free"
 
 client = OpenAI(
@@ -266,4 +268,5 @@ with tabs[3]:
 
     if "summary" in st.session_state:
         st.write(st.session_state.summary)
+
 
