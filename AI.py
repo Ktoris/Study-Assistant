@@ -117,7 +117,7 @@ notes = st.text_area("Paste your notes here:", height=200)
 
 col1, col2 = st.columns(2)
 with col1:
-    uploaded_pdf = st.file_uploader("📂 Upload a PDF", type=["pdf"])
+    uploaded_pdf = st.file_uploader("📂 Upload aa PDF", type=["pdf"])
 with col2:
     uploaded_ppt = st.file_uploader("📂 Upload a PowerPoint", type=["pptx"])
 
@@ -268,5 +268,6 @@ with tabs[3]:
 
     if "summary" in st.session_state:
         st.write(st.session_state.summary)
+
 
 
