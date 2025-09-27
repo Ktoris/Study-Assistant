@@ -10,7 +10,7 @@ MODEL = "deepseek/deepseek-chat-v3.1:free"
 
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
-    api_key="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"
+    api_key=API_KEY
 )
 
 QUIZ_PROMPT = """You are an expert teacher creating practice tests. 
@@ -266,3 +266,4 @@ with tabs[3]:
 
     if "summary" in st.session_state:
         st.write(st.session_state.summary)
+
