@@ -6,10 +6,12 @@ from pptx import Presentation
 
 # ================== CONFIG ==================
 import os
-API_KEY = os.getenv("OPENROUTER_API_KEY")
+API_KEY = os.getenv("OPENROUTER_API_KEY") or st.secrets.get("OPENROUTER_API_KEY")
 st.write("API Key loaded?", bool(API_KEY))  # should show True
 
 MODEL = "deepseek/deepseek-chat-v3.1:free"
+
+
 
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
@@ -269,6 +271,7 @@ with tabs[3]:
 
     if "summary" in st.session_state:
         st.write(st.session_state.summary)
+
 
 
 
