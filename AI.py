@@ -6,8 +6,10 @@ from pptx import Presentation
 
 # ================== CONFIG ==================
 import os
+
+# Load API key from Streamlit secrets
 API_KEY = st.secrets["OPENROUTER_API_KEY"]
-st.write("API Key loaded?", bool(API_KEY))  # True
+st.write("API Key loaded?", bool(API_KEY))  # should show True
 
 # Initialize OpenAI client with OpenRouter base URL
 client = OpenAI(
@@ -16,14 +18,6 @@ client = OpenAI(
 )
 
 MODEL = "deepseek/deepseek-chat-v3.1:free"
-
-
-
-
-client = OpenAI(
-    api_key=API_KEY,
-    base_url="https://openrouter.ai/api/v1"
-)
 QUIZ_PROMPT = """You are an expert teacher creating practice tests. 
 I will provide you with a set of notes on a topic. 
 Based on these notes, generate ONLY multiple-choice questions in valid JSON format.
@@ -277,6 +271,7 @@ with tabs[3]:
 
     if "summary" in st.session_state:
         st.write(st.session_state.summary)
+
 
 
 
