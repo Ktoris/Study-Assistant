@@ -7,6 +7,7 @@ from pptx import Presentation
 # ================== CONFIG ==================
 import os
 API_KEY = os.getenv("OPENROUTER_API_KEY")
+st.write("API Key loaded?", bool(API_KEY))  # should show True
 
 MODEL = "deepseek/deepseek-chat-v3.1:free"
 
@@ -268,6 +269,7 @@ with tabs[3]:
 
     if "summary" in st.session_state:
         st.write(st.session_state.summary)
+
 
 
 
