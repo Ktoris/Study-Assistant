@@ -9,14 +9,21 @@ import os
 
 # Load API key from Streamlit secrets
 API_KEY = st.secrets["OPENROUTER_API_KEY"]
-st.write("API Key loaded?", bool(API_KEY))
+st.write("API Key loaded?", bool(API_KEY))  # True
 
 client = OpenAI(
     api_key=API_KEY,
-    base_url="https://openrouter.ai/api/v1",  # OpenRouter endpoint
+    base_url="https://openrouter.ai/api/v1"
 )
 
 MODEL = "deepseek/deepseek-chat-v3.1:free"
+
+# Quick test
+try:
+    resp = client.models.list()
+    st.success("✅ Connected to OpenRouter!")
+except Exception as e:
+    st.error(f"❌ Connection failed: {e}")
 QUIZ_PROMPT = """You are an expert teacher creating practice tests. 
 I will provide you with a set of notes on a topic. 
 Based on these notes, generate ONLY multiple-choice questions in valid JSON format.
@@ -270,6 +277,7 @@ with tabs[3]:
 
     if "summary" in st.session_state:
         st.write(st.session_state.summary)
+
 
 
 
