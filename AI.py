@@ -6,7 +6,7 @@ from pptx import Presentation
 
 # ================== CONFIG ==================
 API_KEY = st.secrets["OPENROUTER_API_KEY"]
-st.write("API Key loaded?", bool(API_KEY))  # True
+st.write("API Key loaded?", bool(API_KEY))  # True if loaded correctly
 
 MODEL = "deepseek/deepseek-chat-v3.1:free"
 BASE_URL = "https://openrouter.ai/api/v1/chat/completions"
