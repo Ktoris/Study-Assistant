@@ -9,12 +9,11 @@ import os
 
 # Load API key from Streamlit secrets
 API_KEY = st.secrets["OPENROUTER_API_KEY"]
-st.write("API Key loaded?", bool(API_KEY))  # should show True
+st.write("API Key loaded?", bool(API_KEY))
 
-# Initialize OpenAI client with OpenRouter base URL
 client = OpenAI(
     api_key=API_KEY,
-    base_url="https://openrouter.ai/api/v1"
+    base_url="https://openrouter.ai/api/v1",  # OpenRouter endpoint
 )
 
 MODEL = "deepseek/deepseek-chat-v3.1:free"
@@ -271,6 +270,7 @@ with tabs[3]:
 
     if "summary" in st.session_state:
         st.write(st.session_state.summary)
+
 
 
 
