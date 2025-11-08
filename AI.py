@@ -11,6 +11,7 @@ st.write("API Key loaded?", bool(API_KEY))  # True if loaded correctly
 MODEL = "deepseek/deepseek-chat-v3.1:free"
 BASE_URL = "https://openrouter.ai/api/v1/chat/completions"
 
+
 # ================== HELPER FUNCTION ==================
 def ask_openrouter(prompt, notes):
     payload = {
@@ -257,4 +258,5 @@ with tabs[3]:
                 st.error(f"Failed: {e}")
     if "summary" in st.session_state:
         st.write(st.session_state.summary)
+
 
