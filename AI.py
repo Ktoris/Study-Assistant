@@ -4,15 +4,15 @@ import requests
 from PyPDF2 import PdfReader
 from pptx import Presentation
 
-# ================== CONFIG ==================
+
 API_KEY = st.secrets["OPENROUTER_API_KEY"]
-st.write("API Key loaded?", bool(API_KEY))  # True if loaded correctly
+st.write("API Key loaded?", bool(API_KEY))
 
 MODEL = "deepseek/deepseek-r1-0528-qwen3-8b:free"
 BASE_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 
-# ================== HELPER FUNCTION ==================
+
 def ask_openrouter(prompt, notes):
     payload = {
         "model": MODEL,
@@ -30,7 +30,7 @@ def ask_openrouter(prompt, notes):
     data = response.json()
     return data["choices"][0]["message"]["content"]
 
-# ================== PROMPTS ==================
+
 QUIZ_PROMPT = """You are an expert teacher creating practice tests. 
 I will provide you with a set of notes on a topic. 
 Based on these notes, generate ONLY multiple-choice questions in valid JSON format.
@@ -113,7 +113,7 @@ Rules:
 - Do not include lists unless necessary.
 """
 
-# ================== PAGE SETUP ==================
+
 st.set_page_config(page_title="AI Study App", page_icon="📘", layout="centered")
 
 st.markdown("""
@@ -127,7 +127,7 @@ st.markdown("""
 st.markdown("<h1 class='main-title'>📘 AI-Powered Study App</h1>", unsafe_allow_html=True)
 st.markdown("<p class='subtitle'>Upload notes, generate quizzes, simplify with Feynman, or get summaries — all powered by AI.</p>", unsafe_allow_html=True)
 
-# ================== INPUT SECTION ==================
+
 st.header("✍️ Input Notes")
 notes = st.text_area("Paste your notes here:", height=200)
 
@@ -150,10 +150,10 @@ if uploaded_ppt:
     notes = extract_text_from_pptx(uploaded_ppt)
     st.success("✅ PowerPoint uploaded and converted to text!")
 
-# ================== FUNCTION CHOICES ==================
+
 tabs = st.tabs(["📝 Quiz", "🧠 Feynman", "📑 Practice Test", "📖 Summary"])
 
-# -------------------- QUIZ TAB --------------------
+
 with tabs[0]:
     st.subheader("Generate a Quiz from Notes")
     if st.button("⚡ Create Quiz"):
@@ -186,7 +186,7 @@ with tabs[0]:
                     st.error(f"Q{i+1}: ❌ Wrong. Correct answer: {correct_ans}")
             st.subheader(f"Final Score: {correct} / {total}")
 
-# -------------------- FEYNMAN TAB --------------------
+
 with tabs[1]:
     st.subheader("Explain with Feynman Technique")
     if st.button("💡 Simplify Notes"):
@@ -199,7 +199,7 @@ with tabs[1]:
     if "feynman_explanation" in st.session_state:
         st.write(st.session_state.feynman_explanation)
 
-# -------------------- PRACTICE TEST TAB --------------------
+
 with tabs[2]:
     st.subheader("Generate a Practice Test")
     if st.button("📝 Create Practice Test"):
@@ -246,7 +246,7 @@ with tabs[2]:
                     st.info(f"Q{i+1}: Open question — check your own answer.")
             st.subheader(f"Final Score: {correct} / {total}")
 
-# -------------------- SUMMARY TAB --------------------
+
 with tabs[3]:
     st.subheader("Summarize Notes")
     if st.button("📖 Summarize"):
@@ -258,6 +258,7 @@ with tabs[3]:
                 st.error(f"Failed: {e}")
     if "summary" in st.session_state:
         st.write(st.session_state.summary)
+
 
 
 
